@@ -2,7 +2,8 @@
 
 gRPC for .Net 6.0 sample created using link https://docs.microsoft.com/en-us/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-6.0&tabs=visual-studio
 
-Server project created with template ''ASP.NET Core gRPC Service'' with .Net 6.0
+Server project 'GrpcGreeter' created with template ''ASP.NET Core gRPC Service'' with .Net 6.0
+
 Client project created with console app and added below nuget packages
 Install-Package Grpc.Net.Client
 Install-Package Google.Protobuf
