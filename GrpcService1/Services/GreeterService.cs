@@ -15,7 +15,7 @@ namespace GrpcGreeter.Services
         {
             return Task.FromResult(new HelloReply
             {
-                Message = "Hello " + request.Name
+                Message = $"Hello \"{request.Name}\" from gRPC Service!!"
             });
         }
     }

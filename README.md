@@ -16,3 +16,6 @@ GrpcGreeterClient\obj\Debug\[TARGET_FRAMEWORK]\Protos\GreetGrpc.cs: Contains the
 How to run
 In the Greeter service, press Ctrl+F5 to start the server without the debugger.
 In the GrpcGreeterClient project, press Ctrl+F5 to start the client without the debugger.
+
+Mix rest api and gRPC endpoint as below
+https://stackoverflow.com/questions/58649775/can-i-combine-a-grpc-and-webapi-app-into-a-net-core-3-0-in-c

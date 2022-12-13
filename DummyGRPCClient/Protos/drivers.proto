@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "DriverClient";
+
+package drivers;
+
+service Drivers {
+  rpc List (ListRequest) returns (ListResponse);
+  rpc Upsert (UpsertDriverRequest) returns (DriverResponse);
+}
+
+message UpsertDriverRequest {
+  string Number = 1;
+}
+
+message DriverResponse {
+  string Number = 1;
+  string CreatedBy = 2;
+  int32 CreatedOn = 3;
+  string ModifiedBy = 4;
+  int32 ModifiedOn = 5;
+}
+
+message ListRequest {
+}
+
+message ListResponse {
+  repeated DriverResponse Result = 1;
+}

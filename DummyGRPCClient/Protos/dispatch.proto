@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "DispatchClient";
+
+package dispatch;
+
+service Dispatch {
+  rpc GetDummy (DummyRequest) returns (DummyResponse);
+}
+
+
+message DummyRequest {
+  string Name = 1; 
+}
+
+message DummyResponse {
+  string Message = 1; 
+}

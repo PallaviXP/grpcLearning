@@ -8,3 +8,5 @@
 /GrpcService1/.vs
 /GrpcService1/bin/Debug/net6.0
 /GrpcService1/obj
+/DummyGRPCClient/.vs/DummyGRPCClient
+/DummyGRPCClient/obj

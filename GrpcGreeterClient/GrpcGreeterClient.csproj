@@ -19,9 +19,9 @@
   <ItemGroup>
     <Folder Include="Protos\" />
   </ItemGroup>
-
 	<ItemGroup>
-		<Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
+		<!--<Protobuf Include="Protos\greet.proto" GrpcServices="Client" />-->
+		<Protobuf Include="Protos\greet.proto" OutputDir="%(RelativePath)models/" />
 	</ItemGroup>
 
 </Project>

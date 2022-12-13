@@ -1,0 +1,128 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ShipmentClient";
+
+package shipments;
+
+service Shipments {
+  rpc List (ListRequest) returns (ListResponse);
+  rpc Upsert (UpsertShipmentRequest) returns (ShipmentResponse);
+}
+
+message UpsertShipmentRequest {
+  string Source = 1;
+  string Number = 2;
+  string TrackingDevice = 3;
+  string Instructions = 4;
+  map<string,string> ExtraInfo = 5;
+  repeated UpsertShipmentStopRequest Stops = 6;
+}
+
+message UpsertShipmentStopRequest {
+  int32 Number = 1;
+  LocationResource Location = 2;
+  string Instructions = 3;
+  map<string,string> ExtraInfo = 4;
+  int32 AppointmentTime = 5;
+  repeated UpsertShipmentActivityRequest Activities = 6;
+}
+
+enum ShipmentActivityType {
+  ACTIVITY_TYPE_UNKNOWN = 0;
+  ACTIVITY_TYPE_PICKUP = 1;
+  ACTIVITY_TYPE_DELIVERY = 2;
+  ACTIVITY_TYPE_CHECKPOINT = 3;
+}
+
+message UpsertShipmentActivityRequest {
+  ShipmentActivityType Type = 1;
+  string Instructions = 2;
+  map<string,string> ExtraInfo = 3;
+  int32 AppointmentTime = 4;
+}
+
+message LocationResource {
+  string Name = 1;
+  string Code = 2;
+  string Address = 3;
+  string Notes = 4;
+  CoordinatesResource Position = 5;
+  repeated CoordinatesResource Geofence = 6;
+  map<string,string> ExtraInfo = 7;
+}
+
+message CoordinatesResource {
+  double longitude = 1;
+  double latitude = 2;
+}
+
+message ShipmentResponse {
+  string Source = 1;
+  string Number = 2;
+  string TrackingDevice = 3;
+  string Instructions = 4;
+  map<string,string> ExtraInfo = 5;
+  repeated ShipmentStopResponse Stops = 6;
+  enum ShipmentStage
+  {
+    STAGE_UNKNOWN = 0;
+    STAGE_NEW = 1;
+    STAGE_ASSIGNED = 2;
+    STAGE_STARTED = 3;
+    STAGE_ENDED = 4;
+    STAGE_COMPLETED = 5;
+  }
+  ShipmentStage Stage = 7;
+  enum ShipmentStatus
+  {
+    STATUS_UNKNOWN = 0;
+    STATUS_UNASSIGNED = 1;
+    STATUS_ASSIGNED = 2;
+    STATUS_REASSIGNED = 3;
+    STATUS_ACCEPTED = 4;
+    STATUS_DECLINED = 5;
+    STATUS_ONTIME = 6;
+    STATUS_POSSIBLELATE = 7;
+    STATUS_LATE = 8;
+    STATUS_PAUSED = 9;
+    STATUS_CANCELLED = 10;
+  }
+  ShipmentStatus Status = 8;
+  map<string,string> TrackerInfo = 9;
+  DetectionResource LastDetection = 10;
+  repeated CoordinatesResource Path = 11;
+  string CreatedBy = 12;
+  int32 CreatedOn = 13;
+  string ModifiedBy = 14;
+  int32 ModifiedOn = 15;
+}
+
+message ShipmentStopResponse {
+  int32 Number = 1;
+  LocationResource Location = 2;
+  string Instructions = 3;
+  map<string,string> ExtraInfo = 4;
+  int32 AppointmentTime = 5;
+  repeated ShipmentActivityResponse Activities = 6;
+  int32 EstimatedTime = 7;
+  int32 ActualTime = 8;
+}
+
+message ShipmentActivityResponse {
+  ShipmentActivityType Type = 1;
+  string Instructions = 2;
+  int32 AppointmentTime = 3;
+  int32 ExecutionTime = 4;
+}
+
+message DetectionResource {
+  CoordinatesResource Position = 1;
+  int32 Timestamp = 2;
+}
+
+message ListRequest {
+}
+
+message ListResponse {
+  repeated ShipmentResponse Result = 1;
+}

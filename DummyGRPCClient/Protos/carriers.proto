@@ -1,0 +1,31 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "CarriersClient";
+
+package carriers;
+
+service Carriers {
+  rpc GetCountryCarriers (GetCountryCarriersRequest) returns (CountryCarriersResponse);
+}
+
+//get - request and response
+message GetCountryCarriersRequest {
+  string name = 1;
+}
+
+message CountryCarriersResponse {
+	 repeated CountryCarrier CountryCarriers = 1;
+}
+
+message CountryCarrier {
+  int32 Id = 1;
+  string Country = 2;
+  bool HourlyFlag = 3;
+  bool EqpGrpIdFlag = 4;
+  bool WeeklyKPIFlag = 5;
+  string ModifiedByName = 6;
+  int32 ModifiedBy = 7;
+ // datetime ModifiedOn = 8;
+  string CountryName = 9;
+
+}
